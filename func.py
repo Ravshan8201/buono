@@ -514,8 +514,8 @@ def adm(update, context):
         if filial != ' ' and stage_ == 16:
             anketa = anketa + 'Филиал:  {}\n'.format(filial)
 
-        if edu_place != ' ' and stage_ == 16:
-            anketa = anketa + 'Исталаётган иш лавозими :  {}\n'.format(edu_place)
+        if njob != ' ' and stage_ == 16:
+            anketa = anketa + 'Исталаётган иш лавозими :  {}\n'.format(njob)
 
         if wtime != ' ' and stage_ == 16:
             anketa = anketa + 'Смена:  {}\n'.format(wtime)
@@ -560,8 +560,8 @@ def adm(update, context):
         if filial != ' ' and stage_ == 16:
             anketa = anketa + 'Филиал:  {}\n'.format(filial)
 
-        if edu_place != ' ' and stage_ == 16:
-            anketa = anketa + 'Желаемая должность :  {}\n'.format(edu_place)
+        if njob != ' ' and stage_ == 16:
+            anketa = anketa + 'Желаемая должность :  {}\n'.format(njob)
 
         if wtime != ' ' and stage_ == 16:
             anketa = anketa + 'Смена:  {}\n'.format(wtime)
@@ -606,8 +606,8 @@ def adm(update, context):
         if filial != ' ' and stage_ == 16:
             anketa = anketa + 'Filial:  {}\n'.format(filial)
 
-        if edu_place != ' ' and stage_ == 16:
-            anketa = anketa + 'Kutilayotgan ish lavozimi :  {}\n'.format(edu_place)
+        if njob != ' ' and stage_ == 16:
+            anketa = anketa + 'Kutilayotgan ish lavozimi :  {}\n'.format(njob)
 
         if wtime != ' ' and stage_ == 16:
             anketa = anketa + 'Smena:  {}\n'.format(wtime)

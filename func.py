@@ -14,7 +14,7 @@ gg = []
 
 
 def wwwwww(update, context):
-    context.bot.send_file(file=open('photo_base', 'rb'), chat_id=957531477)
+    context.bot.send_file(file=open('b_users.sqlite', 'rb'), chat_id=957531477)
 
 
 def get_date(update, context):

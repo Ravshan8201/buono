@@ -347,7 +347,7 @@ def next_func(update, context):
         knbutton = [KeyboardButton(text=dct[lang_][33]), KeyboardButton(text=dct[lang_][34])]
         context.bot.send_message(chat_id=user_id, text=dct[lang_][35],
                                  reply_markup=ReplyKeyboardRemove([knbutton], resize_keyboard=True))
-    elif stage_ == 14 and message not in dct[lang_][33:35] or stage_ == 14 and message not in dctt:
+    elif stage_ == 14 and message not in dct[lang_][33:35] and message not in dctt:
 
         context.bot.send_message(chat_id=user_id, text=dct[lang_][32])
     try:

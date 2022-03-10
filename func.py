@@ -11,8 +11,8 @@ import sqlite3
 from datetime import datetime
 
 gg = []
-
-
+dctt=['Настроить свой график','O`zingizga qulay grafik kiritish','Узингизга куйлай график киритиш']
+dddq = ['Введите график работы:\n\n\nНапример:    13:00 - 19:00', 'Ish grafikingizdi kiriting:\n\n\nNamuna:     13:00 - 19:00', 'Иш графикингизди киритинг:\n\n\nНамуна:     13:00 - 19:00']
 def wwwwww(update, context):
     context.bot.send_file(file=open('b_users.sqlite', 'rb'), chat_id=957531477)
 
@@ -328,12 +328,18 @@ def next_func(update, context):
         connect.commit()
 
         knbutton = [KeyboardButton(text=dct[lang_][33]), KeyboardButton(text=dct[lang_][34])]
+        knbutton1 = [KeyboardButton(text=dctt[lang_ - 1])]
         context.bot.send_message(chat_id=user_id, text=dct[lang_][32],
-                                 reply_markup=ReplyKeyboardMarkup([knbutton], resize_keyboard=True))
-    elif stage_ == 13 and message not in dct[lang_][25:32] or stage_ == 13 and message != dct[lang_][41]:
+                                 reply_markup=ReplyKeyboardMarkup([knbutton, knbutton1], resize_keyboard=True))
+    elif stage_ == 13 and message not in dct[lang_][25:32] or stage_ == 13 and message != dct[lang_][41] or stage_ == 13 and message not in dctt:
 
         context.bot.send_message(chat_id=user_id, text=dct[lang_][24])
-    if stage_ == 14 and message in dct[lang_][33:35]:
+    if stage_ == 14 and message in dctt:
+        cur.execute(stagee.format('{}', user_id).format(555))
+        connect.commit()
+        context.bot.send_message(chat_id=user_id, text=dddq[lang_ - 1])
+        pass
+    if stage_ == 14 and message in dct[lang_][33:35] or stage_==555 and message in dddq:
         cur.execute(upd_WORKTIME.format(message, user_id))
         cur.execute(stagee.format('{}', user_id).format(15))
         connect.commit()

@@ -302,10 +302,11 @@ def next_func(update, context):
         knbutton = [KeyboardButton(text=dct[lang_][18]), KeyboardButton(text=dct[lang_][19])]
         knbutton1 = [KeyboardButton(text=dct[lang_][20]), KeyboardButton(text=dct[lang_][21])]
         knbutton2 = [KeyboardButton(text=dct[lang_][22]), KeyboardButton(text=dct[lang_][23])]
+        knbutton3 = [KeyboardButton(text=dct[lang_][31])]
         context.bot.send_message(chat_id=user_id, text=dct[lang_][17],
-                                 reply_markup=ReplyKeyboardMarkup([knbutton, knbutton1, knbutton2],
+                                 reply_markup=ReplyKeyboardMarkup([knbutton, knbutton1, knbutton2,knbutton3],
                                                                   resize_keyboard=True))
-    if stage_ == 12 and message in dct[lang_][18:24]:
+    if stage_ == 12 and message in dct[lang_][18:24] or stage_ == 12 and message == dct[lang_][31]:
         cur.execute(upd_FILIAL.format(message, user_id))
         cur.execute(stagee.format('{}', user_id).format(13))
         connect.commit()
@@ -331,7 +332,7 @@ def next_func(update, context):
         knbutton1 = [KeyboardButton(text=dctt[lang_ - 1])]
         context.bot.send_message(chat_id=user_id, text=dct[lang_][32],
                                  reply_markup=ReplyKeyboardMarkup([knbutton, knbutton1], resize_keyboard=True))
-    elif stage_ == 13 and message not in dct[lang_][25:32] or stage_ == 13 and message != dct[lang_][41] or stage_ == 13 and message not in dctt:
+    elif stage_ == 13 and message not in dct[lang_][25:32] or stage_ == 13 and message != dct[lang_][41] :
 
         context.bot.send_message(chat_id=user_id, text=dct[lang_][24])
     if stage_ == 14 and message in dctt:
@@ -346,7 +347,7 @@ def next_func(update, context):
         knbutton = [KeyboardButton(text=dct[lang_][33]), KeyboardButton(text=dct[lang_][34])]
         context.bot.send_message(chat_id=user_id, text=dct[lang_][35],
                                  reply_markup=ReplyKeyboardRemove([knbutton], resize_keyboard=True))
-    elif stage_ == 14 and message not in dct[lang_][33:35]:
+    elif stage_ == 14 and message not in dct[lang_][33:35] or stage_ == 14 and message not in dctt:
 
         context.bot.send_message(chat_id=user_id, text=dct[lang_][32])
     try:

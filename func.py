@@ -340,7 +340,7 @@ def next_func(update, context):
         connect.commit()
         context.bot.send_message(chat_id=user_id, text=dddq[lang_ - 1])
         pass
-    if stage_ == 14 and message in dct[lang_][33:35] or stage_==555 and message in dddq:
+    if stage_ == 14 and message in dct[lang_][33:35] or stage_==555 and message not in dddq:
         cur.execute(upd_WORKTIME.format(message, user_id))
         cur.execute(stagee.format('{}', user_id).format(15))
         connect.commit()

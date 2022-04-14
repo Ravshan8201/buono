@@ -355,9 +355,9 @@ def next_func(update, context):
         message = int(message)
         if stage_ == 15 and message not in dct[lang_][33:35] and len(str(message)) >= 7:
             cur.execute(upd_SALARY.format(str(message), user_id))
-            cur.execute(stagee.format('{}', user_id).format(16))
+            cur.execute(stagee.format('{}', user_id).format(100))
             connect.commit()
-            context.bot.send_message(chat_id=user_id, text=dct[lang_][36])
+            context.bot.send_message(chat_id=user_id, text=ddd[lang_ - 1])
         if stage_ == 15 and len(str(message)) < 7:
             context.bot.send_message(chat_id=user_id, text=dct[lang_][35])
     except Exception:
@@ -377,8 +377,6 @@ def xuzb(update, context):
     context.bot.send_message(chat_id=user_id, text='Номзодлик анкетасини тўлдириш')
     context.bot.send_message(chat_id=user_id,
                              text='Фамилиянгиз, Исмингиз ва отангизни исмини қуйидаги кўринишда киритинг: \nРустамжонов Илхомжон Анвар ўғли')
-
-
 def ru(update, context):
     user_id = update.callback_query.from_user.id
     connect = sqlite3.connect('b_users.sqlite')
@@ -394,8 +392,6 @@ def ru(update, context):
     sleep(1)
 
     connect.commit()
-
-
 def uz(update, context):
     user_id = update.callback_query.from_user.id
     connect = sqlite3.connect('b_users.sqlite')
@@ -410,8 +406,6 @@ def uz(update, context):
                              text='Familiyangiz, Ismingiz va otangizni ismini quyidagi korinishda kiriting: \nRustamjonov Ilhomjon Anvar o’g’li')
     sleep(1)
     connect.commit()
-
-
 def get_contac(update, context):
     user_id = update.message.chat_id
     num = update.message.contact.phone_number
@@ -429,14 +423,10 @@ def get_contac(update, context):
     lang_ = lang_[0][0]
     k_but = [KeyboardButton(text='далее>>>')]
     context.bot.send_message(chat_id=user_id, text=dct[lang_][0], reply_markup=ReplyKeyboardRemove([k_but]))
-
-
 def adm(update, context):
     user_id = update.message.chat_id
     text = update.message.caption
     photo_id = update.message.photo[-1].file_id
-    file = context.bot.getFile(photo_id)
-    file.download('Picture.jpeg')
     connect = sqlite3.connect('b_users.sqlite')
     cur = connect.cursor()
 
@@ -481,6 +471,7 @@ def adm(update, context):
         wtime = wtime[0][0]
         salary = salary[0][0]
         inst = inst[0][0]
+        file = context.bot.getFile(photo_id)
     except Exception:
         pass
     anketa = ""
@@ -529,7 +520,6 @@ def adm(update, context):
 
         if salary != ' ' and stage_ == 16:
             anketa = anketa + 'Кутилаётган ойлик маош:  {}\n'.format(salary)
-
     if lang_ == 1:
         if a_name != ' ' and stage_ == 16:
             anketa = anketa + 'Имя:  {}\n'.format(a_name)
@@ -575,7 +565,6 @@ def adm(update, context):
 
         if salary != ' ' and stage_ == 16:
             anketa = anketa + 'Ожидаемая зарплата:  {}\n'.format(salary)
-
     if lang_ == 2:
         if a_name != ' ' and stage_ == 16:
             anketa = anketa + 'Ismi:  {}\n'.format(a_name)
@@ -621,10 +610,41 @@ def adm(update, context):
 
         if salary != ' ' and stage_ == 16:
             anketa = anketa + 'Istalayotgan oylik maosh:  {}\n'.format(salary)
-    context.bot.send_photo(photo=open('Picture.jpeg', 'rb'), chat_id=-772939946, caption=anketa)
-    context.bot.send_message(chat_id=user_id, text=dct[lang_][37])
-    cur.execute("""DELETE FROM Users WHERE TG_ID = "{}" """.format(user_id))
-    connect.commit()
+    if stage_ == 16:
+       file = context.bot.getFile(photo_id)
+       file.download('Picture.jpeg')
+       context.bot.send_photo(photo=open('{}.jpeg'.format(user_id), 'rb'), chat_id=-772939946)
+       context.bot.send_photo(photo=open('{}.jpeg'.format(user_id+1), 'rb'), chat_id=-772939946)
+       context.bot.send_photo(photo=open('Picture.jpeg', 'rb'), chat_id=-772939946, caption=anketa)
+       context.bot.send_message(chat_id=user_id, text=dct[lang_][37])
+       cur.execute("""DELETE FROM Users WHERE TG_ID = "{}" """.format(user_id))
+       connect.commit()
+       import os
+       if os.path.isfile('Picture.jpeg'.format(user_id)):
+           os.remove('Picture.jpeg'.format(user_id))
+           print("success")
+       else:
+           print("File doesn't exists!")
+       if os.path.isfile('{}.jpeg'.format(user_id)):
+           os.remove('{}.jpeg'.format(user_id))
+           print("success")
+       else:
+           print("File doesn't exists!")
+       if os.path.isfile('{}.jpeg'.format(user_id+1)):
+           os.remove('{}.jpeg'.format(user_id+1))
+           print("success")
+       else:
+           print("File doesn't exists!")
+    if stage_ == 100:
+        cur.execute(stagee.format('{}', user_id).format(1000))
+        connect.commit()
+        context.bot.send_message(chat_id=user_id, text=ddd2[lang_-1])
+        file.download('{}.jpeg'.format(user_id))
+    if stage_ == 1000:
+        cur.execute(stagee.format('{}', user_id).format(16))
+        connect.commit()
+        context.bot.send_message(chat_id=user_id, text=dct[lang_][36])
+        file.download('{}.jpeg'.format(user_id+1))
 
     # if lang_ == 1 and stage_ == 16 and edu_place != ' ' and last_job != ' ':
     #     anketa = """

@@ -140,4 +140,5 @@ dct = {1:[
        ]}
 
 dctm =['Менеджер','Menedjer','Менеджер']
-ddd = ['','','']
+ddd = ['Oптавьте фото первой страницы паспорта:','Pasportingizni birinchi betini fotosini yuboring:','Паспортингизни биринчи бетини фотосини юборинг:']
+ddd2 = ['Oптавьте фото страницы паспорта с пропискиой:','Pasportingizni turar joyingiz korsatilgan betini fotosini yuboring:','Паспортингизни тураржойингиз корсатилган бетини фотосини юборинг:']

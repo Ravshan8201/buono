@@ -611,12 +611,16 @@ def adm(update, context):
         if salary != ' ' and stage_ == 16:
             anketa = anketa + 'Istalayotgan oylik maosh:  {}\n'.format(salary)
     if stage_ == 16:
-       user_name = update.message.from_user.username
+
        file = context.bot.getFile(photo_id)
        file.download('Picture.jpeg')
        context.bot.send_photo(photo=open('{}.jpeg'.format(user_id), 'rb'), chat_id=-772939946)
        context.bot.send_photo(photo=open('{}.jpeg'.format(user_id+1), 'rb'), chat_id=-772939946)
-       context.bot.send_photo(photo=open('Picture.jpeg', 'rb'), chat_id=-772939946, caption=anketa+'\n@'+user_name)
+       try:
+            user_name = update.message.from_user.username
+            context.bot.send_photo(photo=open('Picture.jpeg', 'rb'), chat_id=-772939946, caption=anketa+'\n@'+user_name)
+       except Exception:
+            context.bot.send_photo(photo=open('Picture.jpeg', 'rb'), chat_id=-772939946, caption=anketa)
        context.bot.send_message(chat_id=user_id, text=dct[lang_][37])
        cur.execute("""DELETE FROM Users WHERE TG_ID = "{}" """.format(user_id))
        connect.commit()

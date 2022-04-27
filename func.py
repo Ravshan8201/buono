@@ -480,7 +480,7 @@ def adm(update, context):
             anketa = anketa + 'Исми:  {}\n'.format(a_name)
 
         if pnum_ != ' ' and stage_ == 16:
-            anketa = anketa + 'Телефон:  {}\n'.format(pnum_)
+            anketa = anketa + 'Телефон:  `{}`1\n'.format(pnum_)
 
         if bdate != ' ' and stage_ == 16:
             anketa = anketa + 'Тугилган санаси:  {}\n'.format(bdate)
@@ -525,7 +525,7 @@ def adm(update, context):
             anketa = anketa + 'Имя:  {}\n'.format(a_name)
 
         if pnum_ != ' ' and stage_ == 16:
-            anketa = anketa + 'Телефон:  {}\n'.format(pnum_)
+            anketa = anketa + 'Телефон:  `{}`\n'.format(pnum_)
 
         if bdate != ' ' and stage_ == 16:
             anketa = anketa + 'Дата рождения:  {}\n'.format(bdate)
@@ -570,7 +570,7 @@ def adm(update, context):
             anketa = anketa + 'Ismi:  {}\n'.format(a_name)
 
         if pnum_ != ' ' and stage_ == 16:
-            anketa = anketa + 'Telefon:  {}\n'.format(pnum_)
+            anketa = anketa + 'Telefon:  `{}`\n'.format(pnum_)
 
         if bdate != ' ' and stage_ == 16:
             anketa = anketa + 'Tug`ilgan sanasi:  {}\n'.format(bdate)
@@ -616,7 +616,7 @@ def adm(update, context):
        file.download('Picture.jpeg')
        context.bot.send_photo(photo=open('{}.jpeg'.format(user_id), 'rb'), chat_id=-772939946)
        context.bot.send_photo(photo=open('{}.jpeg'.format(user_id+1), 'rb'), chat_id=-772939946)
-       context.bot.send_photo(photo=open('Picture.jpeg', 'rb'), chat_id=-772939946, caption=anketa)
+       context.bot.send_photo(photo=open('Picture.jpeg', 'rb'), chat_id=-772939946, caption=anketa , parse_mode='Markdown')
        context.bot.send_message(chat_id=-772939946, text='@'+user_name)
        context.bot.send_message(chat_id=user_id, text=dct[lang_][37])
        cur.execute("""DELETE FROM Users WHERE TG_ID = "{}" """.format(user_id))
